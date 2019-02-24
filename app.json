@@ -1,6 +1,13 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/index/home",
+    "pages/index/diary",
+    "pages/index/add",
+    "pages/index/manager",
+    "pages/user/index",
+    "pages/user/login",
+    "pages/user/register",
     "pages/logs/logs"
   ],
   "window":{
