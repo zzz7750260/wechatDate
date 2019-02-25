@@ -15,7 +15,17 @@ Page({
     wx.request({
       url: 'http://localhost/wechatDate/app/api.php',
       data:{
-        parameter:'login'
+        parameter:'login',
+        turl:'checkLogin'
+      },
+      method:'GET',
+      header:{
+        //'content-type':'application/x-www-form-urlencoded'
+        'content-type': 'application/json'
+      },
+      success:function(res){
+        console.log(res.data);
+        
       }
     })    
   },
