@@ -18,6 +18,7 @@ Page({
         parameter:'login',
         turl:'checkLogin',
         theUserToken: getApp().globalData.userInfo.dev_token,
+
       },
       method:'GET',
       header:{

@@ -5,6 +5,26 @@ Page({
       url: './register',
     })
   },
+  formSubmit:function(e){
+    /**向后端提交登陆数据*/
+    wx.request({
+      url: 'http://localhost/wechatDate/app/api.php',
+      data:{
+        parameter:'login',
+        turl:'checkLogin',
+        theUserToken:getApp().globalData.userInfo.dev_token,
+        username:e.detail.value.username,
+        password:e.detail.value.password,
+      },
+      method:"POST",
+      //header:{
+     //   'content-type':'application/x-wwww-form-urlencode'
+      //},
+      success:function(res){
+        console.log(res);
+      }
+    })
+  },
   /**
    * 页面的初始数据
    */

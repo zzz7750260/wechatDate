@@ -11,6 +11,10 @@
 				$theUserToken = $_POST['theUserToken'];	
 			}
 			
+			//获取提交过来的用户信息
+			$theUserName = $_POST['username'];
+			$thePassword = $_POST['password'];
+			
 			if($theUserToken == '10mins'){
 				//返回前端数组
 				$loginArray = array(
@@ -26,7 +30,7 @@
 					result =>''
 				);				
 			}
-			
+			echo $theUserToken;
 			//将数组转为json返回给前端
 			$loginJson = json_encode($loginArray);
 			print_r($loginJson);
