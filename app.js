@@ -34,6 +34,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo:{
+      dev_token:"10min",
+    }
   }
 })

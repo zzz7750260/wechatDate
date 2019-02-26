@@ -16,7 +16,8 @@ Page({
       url: 'http://localhost/wechatDate/app/api.php',
       data:{
         parameter:'login',
-        turl:'checkLogin'
+        turl:'checkLogin',
+        theUserToken: getApp().globalData.userInfo.dev_token,
       },
       method:'GET',
       header:{
@@ -25,7 +26,17 @@ Page({
       },
       success:function(res){
         console.log(res.data);
-        
+        if(res.data.status == 1){
+          wx.redirectTo({
+            url: '../index/home',
+          })
+
+        }
+        else{
+          wx.redirectTo({
+            url: './login',
+          })
+        }
       }
     })    
   },

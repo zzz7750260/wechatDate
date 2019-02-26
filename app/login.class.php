@@ -3,15 +3,21 @@
 		function checkLogin(){
 			//获取token和user_token
 			$theToken = $_GET['theToken'];
-			$theUserToken = $_POST['theUserToken'];
-			if($theUserToken == '10min'){
+			$theUserToken = $_GET['theUserToken'];
+			if(!$theToken){
+				$theToken = $_POST['theToken'];
+			}
+			if(!$theUserToken){
+				$theUserToken = $_POST['theUserToken'];	
+			}
+			
+			if($theUserToken == '10mins'){
 				//返回前端数组
 				$loginArray = array(
 					status => '1',
 					msg => '登陆成功',
 					result =>''
-				);
-				
+				);			
 			}
 			else{
 				$loginArray = array(

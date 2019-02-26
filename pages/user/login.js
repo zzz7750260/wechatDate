@@ -1,6 +1,10 @@
 // pages/user/login.js
 Page({
-
+  re_Register:function(e){
+    wx.navigateTo({
+      url: './register',
+    })
+  },
   /**
    * 页面的初始数据
    */
