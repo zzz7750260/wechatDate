@@ -17,11 +17,13 @@ Page({
         password:e.detail.value.password,
       },
       method:"POST",
-      //header:{
-     //   'content-type':'application/x-wwww-form-urlencode'
-      //},
+      header:{
+        //'content-type':'application/x-wwww-form-urlencode'
+        //'content-type': 'application/json'
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       success:function(res){
-        console.log(res);
+        console.log(res.data);
       }
     })
   },

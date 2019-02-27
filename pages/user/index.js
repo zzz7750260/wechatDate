@@ -20,10 +20,10 @@ Page({
         theUserToken: getApp().globalData.userInfo.dev_token,
 
       },
-      method:'GET',
+      method:'POST',
       header:{
-        //'content-type':'application/x-www-form-urlencoded'
-        'content-type': 'application/json'
+        'content-type':'application/x-www-form-urlencoded'
+        //'content-type': 'application/json'
       },
       success:function(res){
         console.log(res.data);

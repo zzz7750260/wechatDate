@@ -1,4 +1,6 @@
 <?php
+	//引入数据库连接
+	include('system.ini.php');
 	class theLogin{	
 		function checkLogin(){
 			//获取token和user_token
@@ -7,6 +9,7 @@
 			if(!$theToken){
 				$theToken = $_POST['theToken'];
 			}
+			
 			if(!$theUserToken){
 				$theUserToken = $_POST['theUserToken'];	
 			}
@@ -15,13 +18,37 @@
 			$theUserName = $_POST['username'];
 			$thePassword = $_POST['password'];
 			
-			if($theUserToken == '10mins'){
-				//返回前端数组
-				$loginArray = array(
-					status => '1',
-					msg => '登陆成功',
-					result =>''
-				);			
+			
+			//echo $theUserName;
+			//检测是否正确使用token
+			if($theUserToken == '10min'){
+				//检测是否是根据缓存登陆，如果存在$theToken,为缓存登陆检测，否则为账号登陆
+				if(!$theToken){
+					$selectUserSql = "select * from user where username = '$theUserName' and password = '$thePassword'";
+					$selectUserSql_db = mysql_query($selectUserSql);
+					$selectUserSql_db_num = mysql_num_rows($selectUserSql_db);
+					
+					if($selectUserSql_db_num>0){
+						$selectUserSql_db_info = mysql_fetch_assoc($selectUserSql_db);
+						//组建前端数组
+						//返回前端数组
+						$loginArray = array(
+							status => '1',
+							msg => '登陆成功',
+							result =>$selectUserSql_db_info,
+						);							
+						
+					}
+					else{
+						$loginArray = array(
+							status => '5',
+							msg => '登陆失败',
+							result =>$selectUserSql_db_info,
+						);							
+					}
+				}
+				
+		
 			}
 			else{
 				$loginArray = array(
@@ -30,7 +57,7 @@
 					result =>''
 				);				
 			}
-			echo $theUserToken;
+			//echo $theUserToken;
 			//将数组转为json返回给前端
 			$loginJson = json_encode($loginArray);
 			print_r($loginJson);
