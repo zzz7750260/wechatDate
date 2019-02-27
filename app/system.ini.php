@@ -11,11 +11,11 @@
 			$conn = mysql_connect($this->db,$this->user,$this->pwd,$this->dlink);
 			mysql_query('set names utf8');
 			if($conn){
-				echo 'mysql server link success'; 
+				//echo 'mysql server link success'; 
 				$conn_db = mysql_select_db('wechatData',$conn);
 				
 				if($conn_db){ 
-					echo 'mysql database link success';
+					//echo 'mysql database link success';
 				}
 				else{
 					echo 'mysql database link false';

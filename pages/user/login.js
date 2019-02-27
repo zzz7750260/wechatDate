@@ -24,6 +24,22 @@ Page({
       },
       success:function(res){
         console.log(res.data);
+        /**当登陆成功时，存储缓存信息 */
+        if(res.data.status == 1){
+          wx.setStorage({
+            key: 'username',
+            //data: JSON.parse(res.data.result).username
+            data:res.data.result.username
+          })
+          wx.setStorage({
+            key: 'token',
+            //data: JSON.parse(res.data.result).token
+            data: res.data.result.token
+          })
+          wx.redirectTo({
+            url: '../index/home',
+          })
+        }
       }
     })
   },

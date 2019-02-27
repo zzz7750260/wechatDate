@@ -8,7 +8,7 @@
 	if(!$turl){
 		$turl = $_POST['turl'];
 	}
-	echo $theParameter;
+	//echo $theParameter;
 	if($theParameter == 'login'){
 		include_once('login.class.php');
 		$thePart = new theLogin;

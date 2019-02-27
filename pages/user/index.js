@@ -12,34 +12,45 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.request({
-      url: 'http://localhost/wechatDate/app/api.php',
-      data:{
-        parameter:'login',
-        turl:'checkLogin',
-        theUserToken: getApp().globalData.userInfo.dev_token,
+    /**获取是否存在token和username，如果存在就进行缓存登陆，如果不存在就跳转到登陆页面*/
+    var token = wx.getStorageSync('token');
+    var username = wx.getStorageSync('username');
+    if (token && username){
+      wx.request({
+        url: 'http://localhost/wechatDate/app/api.php',
+        data: {
+          parameter: 'login',
+          turl: 'checkLogin',
+          theUserToken: getApp().globalData.userInfo.dev_token,
 
-      },
-      method:'POST',
-      header:{
-        'content-type':'application/x-www-form-urlencoded'
-        //'content-type': 'application/json'
-      },
-      success:function(res){
-        console.log(res.data);
-        if(res.data.status == 1){
-          wx.redirectTo({
-            url: '../index/home',
-          })
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+          //'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res.data);
+          if (res.data.status == 1) {
+            wx.redirectTo({
+              url: '../index/home',
+            })
 
+          }
+          else {
+            wx.redirectTo({
+              url: './login',
+            })
+          }
         }
-        else{
-          wx.redirectTo({
-            url: './login',
-          })
-        }
-      }
-    })    
+      })  
+    }
+    else{
+      wx.redirectTo({
+        url: './login',
+      })      
+    }
+  
   },
 
   /**
