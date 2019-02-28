@@ -86,6 +86,9 @@
 			print_r($loginJson);
 			
 		}
+		
+		//注册
+		
 		function theRuturn($turl){
 			if($turl == 'checkLogin'){
 				$this->checkLogin();

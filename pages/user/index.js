@@ -32,16 +32,24 @@ Page({
         },
         success: function (res) {
           console.log(res.data);
-          if (res.data.status == 1) {
+          if (res.data.status == 1 || res.data.status == 2){
             wx.redirectTo({
               url: '../index/home',
             })
 
           }
           else {
-            wx.redirectTo({
-              url: './login',
+            wx.showToast({
+              title:res.data.result,
+              icon:'loading',
+              duration:1000,
+              success:function(res){
+                wx.redirectTo({
+                  url: './login',
+                })   
+              }
             })
+
           }
         }
       })  

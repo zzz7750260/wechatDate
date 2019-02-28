@@ -40,6 +40,18 @@ Page({
             url: '../index/home',
           })
         }
+        else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'loading',
+            duration: 1000,
+            success: function (res) {
+              wx.redirectTo({
+               // url: './login',
+              })
+            }
+          })            
+        }
       }
     })
   },
