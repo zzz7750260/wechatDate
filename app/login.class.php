@@ -41,10 +41,33 @@
 					}
 					else{
 						$loginArray = array(
-							status => '5',
-							msg => '登陆失败',
+							status => '6',
+							msg => '账户不存在',
 							result =>$selectUserSql_db_info,
 						);							
+						
+					}
+				}
+				else{
+					//根据token判断进自动登陆
+					$tokenSql = "select * from user where token = '$theToken' and username = '$theUserName'";
+					$tokenSql_db = mysql_query($tokenSql);
+					$tokenSql_db_num = mysql_num_rows($tokenSql_db);
+					if($tokenSql_db_num>0){
+						$selectUserSql_db_info = mysql_fetch_assoc($tokenSql_db);
+						
+						$loginArray = array(
+							status => '2',
+							msg => '自动登陆成功',
+							result =>$selectUserSql_db_info,
+						);								
+					}
+					else{
+						$loginArray = array(
+							status => '5',
+							msg => '自动登陆失败',
+							result =>$selectUserSql_db_info,
+						);								
 					}
 				}
 				

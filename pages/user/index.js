@@ -22,7 +22,8 @@ Page({
           parameter: 'login',
           turl: 'checkLogin',
           theUserToken: getApp().globalData.userInfo.dev_token,
-
+          theToken:token,
+          username:username,
         },
         method: 'POST',
         header: {
