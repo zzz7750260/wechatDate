@@ -87,7 +87,38 @@
 			
 		}
 		
-		//注册
+		//用户注册
+		function userRegister(){
+			//获取传递过来的信息
+			$theUsername = $_POST['username'];
+			$thePassword = $_POST['password'];
+			//$theToken = $_POST['theToken'];
+			$theUserToken = $_POST['teUserToken'];
+			if($theUserToken == '10min'){
+				//检测用户名是否存在
+				$checkUserSql = "select * from user where username ='$theUserName'";
+				$checkUserSql_db = mysql_query($checkUserSql);
+				$checkUserSql_db_num = mysql_num_rows($checkUserSql_db);
+				if($checkUserSql_db_num>1){
+					//组装前端数据
+					$returnArray = array(
+						status => 4,
+						msg => '用户已经存在',
+						result => ''
+					);
+				}
+				else{
+					//生成token
+					$theToken = date('Y-m-d H:i:s') . $theUserName;
+					
+					$addUserSql = "insert into user(username,password,)";
+				}
+				
+			}
+			else{
+				
+			}
+		}
 		
 		function theRuturn($turl){
 			if($turl == 'checkLogin'){
