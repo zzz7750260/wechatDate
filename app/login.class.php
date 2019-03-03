@@ -90,7 +90,7 @@
 		//用户注册
 		function userRegister(){
 			//获取传递过来的信息
-			$theUsername = $_POST['username'];
+			$theUserName = $_POST['username'];
 			$thePassword = $_POST['password'];
 			//$theToken = $_POST['theToken'];
 			$theUserToken = $_POST['teUserToken'];
@@ -101,28 +101,46 @@
 				$checkUserSql_db_num = mysql_num_rows($checkUserSql_db);
 				if($checkUserSql_db_num>1){
 					//组装前端数据
-					$returnArray = array(
+					$registerArray = array(
 						status => 4,
 						msg => '用户已经存在',
 						result => ''
 					);
 				}
 				else{
-					//生成token
-					$theToken = date('Y-m-d H:i:s') . $theUserName;
-					
-					$addUserSql = "insert into user(username,password,)";
+					//生成时间
+					$theTime = date('Y-m-d H:i:s');
+					//$theToken = time() . $theUserName;	
+					$theToken = time() . md5($theUserName);
+					//echo $theToken;
+					//$addUserSql = "insert into user(username,password,)";
+					$registerArray = array(
+						status => 1,
+						msg => '用户插入成功',
+						result => $theToken
+					);
 				}
 				
 			}
 			else{
-				
+				$registerArray = array(
+					status => 0,
+					msg => '登陆失败',
+					result => ''
+				);
 			}
+			
+			//将数组转为json返回给前端
+			$registerJson = json_encode($registerArray);
+			print_r($registerJson);
 		}
 		
 		function theRuturn($turl){
 			if($turl == 'checkLogin'){
 				$this->checkLogin();
+			}
+			if($turl == 'userRegister'){
+				$this->userRegister();
 			}
 			
 		}

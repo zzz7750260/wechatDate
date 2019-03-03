@@ -7,6 +7,25 @@ Page({
   data: {
 
   },
+  /**提交注册数据 */
+  formSubmit:function(e){
+    wx.request({
+      url: 'http://localhost/wechatDate/app/api.php',
+      data:{
+        parameter:'login',
+        turl:'userRegister',
+        teUserToken:getApp().globalData.userInfo.dev_token,
+        username:e.detail.value.username,
+      },
+      method:"POST",
+      header:{
+        'content-type':'application/x-www-form-urlencoded',
+      },
+      success:function(res){
+        console.log(res.data);
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
