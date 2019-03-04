@@ -14,5 +14,9 @@
 		$thePart = new theLogin;
 		$thePart-> theRuturn($turl);
 	}
-	
+	if($theParameter == 'diary'){
+		include_once('diary.class.php');
+		$thePart = new theDiary;
+		$thePart-> theReturn($turl);
+	}
 	

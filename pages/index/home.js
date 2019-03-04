@@ -1,25 +1,53 @@
 // pages/index/home.js
+var theData;
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    items:[
+      {
+        id:1,
+        username:'admin1',
+        title:'测试1',
+        date:'2018-12-02'
+      }
 
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    /**向后端发出日记请求 */
+    wx.request({
+      url: 'http://localhost/wechatDate/app/api.php',
+      data:{
+        parameter:'diary',
+        turl:'listDiary',
+        theUserToken: getApp().globalData.userInfo.dev_token
+      },
+      method:'GET',
+      header:{
+        'content-tyoe':'application/json',
+      },
+      success:function(res){
+        console.log(res.data);
+       // console.log(res.data.result)
+        theData = res.data.result;
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    /**将获取的日记列表赋予全局 */
+    this.setData({
+      items: theData
+    })
   },
 
   /**

@@ -1,1 +1,5 @@
 /* pages/index/home.wxss */
+.btn{
+  width:50%;
+  font-size: 15px;
+}

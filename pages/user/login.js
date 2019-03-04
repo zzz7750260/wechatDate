@@ -6,54 +6,65 @@ Page({
     })
   },
   formSubmit:function(e){
-    /**向后端提交登陆数据*/
-    wx.request({
-      url: 'http://localhost/wechatDate/app/api.php',
-      data:{
-        parameter:'login',
-        turl:'checkLogin',
-        theUserToken:getApp().globalData.userInfo.dev_token,
-        username:e.detail.value.username,
-        password:e.detail.value.password,
-      },
-      method:"POST",
-      header:{
-        //'content-type':'application/x-wwww-form-urlencode'
-        //'content-type': 'application/json'
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success:function(res){
-        console.log(res.data);
-        /**当登陆成功时，存储缓存信息 */
-        if(res.data.status == 1){
-          wx.setStorage({
-            key: 'username',
-            //data: JSON.parse(res.data.result).username
-            data:res.data.result.username
-          })
-          wx.setStorage({
-            key: 'token',
-            //data: JSON.parse(res.data.result).token
-            data: res.data.result.token
-          })
-          wx.redirectTo({
-            url: '../index/home',
-          })
+    if (e.detail.value.username && e.detail.value.password){
+      /**向后端提交登陆数据*/
+      wx.request({
+        url: 'http://localhost/wechatDate/app/api.php',
+        data: {
+          parameter: 'login',
+          turl: 'checkLogin',
+          theUserToken: getApp().globalData.userInfo.dev_token,
+          username: e.detail.value.username,
+          password: e.detail.value.password,
+        },
+        method: "POST",
+        header: {
+          //'content-type':'application/x-wwww-form-urlencode'
+          //'content-type': 'application/json'
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          console.log(res.data);
+          /**当登陆成功时，存储缓存信息 */
+          if (res.data.status == 1 || res.data.status == 8) {
+            wx.setStorage({
+              key: 'username',
+              //data: JSON.parse(res.data.result).username
+              data: res.data.result.username
+            })
+            wx.setStorage({
+              key: 'token',
+              //data: JSON.parse(res.data.result).token
+              data: res.data.result.token
+            })
+            wx.redirectTo({
+              url: '../index/home',
+            })
+          }
+          else {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'loading',
+              duration: 1000,
+              success: function (res) {
+                wx.redirectTo({
+                  // url: './login',
+                })
+              }
+            })
+          }
         }
-        else{
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'loading',
-            duration: 1000,
-            success: function (res) {
-              wx.redirectTo({
-               // url: './login',
-              })
-            }
-          })            
-        }
-      }
-    })
+      })
+    }
+    else{
+      wx.showToast({
+        title: '账号或者密码不为空',
+        icon: 'loading',
+        duration:2000
+      })
+
+    }
+
   },
   /**
    * 页面的初始数据

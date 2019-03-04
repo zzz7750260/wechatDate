@@ -1,2 +1,20 @@
 <!--pages/index/add.wxml-->
 <text>pages/index/add.wxml</text>
+<view class="main">
+  <form bindsubmit='formSubmit'>
+    <view>
+      <input name="title" class="article_title" placeholder='日记标题' />
+    </view>
+    <view class="article_label">
+      <label>是否公开：</label>
+      <switch name="status"></switch>
+    </view>
+    <view class="article_date">
+      <picker name="date" mode="date" value="{{date}}" start="2015-01-01" end="2020-01-01" bindchange='bindDateChange'>
+        <view>
+          选择日期{{date}}
+        </view>
+      </picker>
+    </view>
+  </form>
+</view>

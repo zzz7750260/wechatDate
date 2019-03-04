@@ -9,22 +9,55 @@ Page({
   },
   /**提交注册数据 */
   formSubmit:function(e){
-    wx.request({
-      url: 'http://localhost/wechatDate/app/api.php',
-      data:{
-        parameter:'login',
-        turl:'userRegister',
-        teUserToken:getApp().globalData.userInfo.dev_token,
-        username:e.detail.value.username,
-      },
-      method:"POST",
-      header:{
-        'content-type':'application/x-www-form-urlencoded',
-      },
-      success:function(res){
-        console.log(res.data);
+    if (e.detail.value.username && e.detail.value.password && e.detail.value.re_password){
+      if (e.detail.value.password == e.detail.value.re_password){
+        wx.request({
+          url: 'http://localhost/wechatDate/app/api.php',
+          data: {
+            parameter: 'login',
+            turl: 'userRegister',
+            teUserToken: getApp().globalData.userInfo.dev_token,
+            username: e.detail.value.username,
+            password: e.detail.value.password,
+          },
+          method: "POST",
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+          },
+          success: function (res) {
+            console.log(res.data);
+            if (res.data.status == 4){
+              wx.showToast({
+                title: '用户名已经存在',
+                icon: 'loading',
+                duration: 2000
+              })                            
+            }
+            if (res.data.status == 1){
+              /**注册成功，返回登陆页 */
+              wx.redirectTo({
+                url: './login',
+              })
+            }
+
+          }
+        })
       }
-    })
+      else{
+        wx.showToast({
+          title: '密码不一致',
+          icon: 'loading',
+          duration: 2000,
+        })
+      }
+    }
+    else{
+      wx.showToast({
+        title: '注册名或者密码不能为空',
+        icon:'loading',
+        duration:2000,
+      })
+    }
   },
 
   /**
