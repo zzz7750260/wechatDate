@@ -1,2 +1,13 @@
 <!--pages/index/manager.wxml-->
 <text>pages/index/manager.wxml</text>
+<view class="main">
+  <view class="list" wx:for="{{items}}" wx:key="did">
+    <text class="article_title">{{item.title}}</text>
+    <navigator url="manager?id={{item.did}}" hover-class="navigator-hover">
+      <button class="btn" bindtap='' size="mini" type="warn">删除文档</button>
+    </navigator>
+    <view>
+      <text class="article_data">日期：{{item.date}}</text>
+    </view>
+   </view>
+</view>

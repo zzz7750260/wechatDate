@@ -1,2 +1,16 @@
 <!--pages/index/diary.wxml-->
 <text>pages/index/diary.wxml</text>
+<view class="article_title">
+  <text>{{article.title}}</text>
+</view>
+<view class="article_date">
+  <text>发布日期:{{article.date}}</text>
+</view>
+<view class="article_username">
+  <text>作者:{{article.author}}</text>
+</view>
+<view class="article_text">
+  <text>
+    {{article.container}}
+  </text>
+</view>

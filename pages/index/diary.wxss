@@ -1,1 +1,15 @@
 /* pages/index/diary.wxss */
+.article_title{
+  font-size:18px;
+  font-weight: bold;
+  text-align:center;
+  padding: 20px 0px;
+}
+
+.article_date{
+  font-size: 14px;
+}
+
+.article_username{
+  font-size: 14px;
+}

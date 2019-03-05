@@ -16,5 +16,9 @@
         </view>
       </picker>
     </view>
+    <view class="article_text">
+      <textarea name="text" bindblur='bindTextAreaBlur' auto-height placeholder='请添加日志' />
+    </view>
+    <button formType="submit" size="mini" style="margin-top:20px;">提交日志</button>
   </form>
 </view>
