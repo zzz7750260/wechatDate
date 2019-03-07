@@ -8,6 +8,9 @@
     "pages/user/index",
     "pages/user/login",
     "pages/user/register",
+    "pages/music/home",
+    "pages/music/data",
+    "pages/music/add",
     "pages/logs/logs"
   ],
   "window":{

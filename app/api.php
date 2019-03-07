@@ -19,4 +19,9 @@
 		$thePart = new theDiary;
 		$thePart-> theReturn($turl);
 	}
+	if($theParameter == 'music'){
+		include_once('music.class.php');
+		$thePart = new theMusic;
+		$thePart-> theReturn($turl);
+	}
 	

@@ -1,0 +1,10 @@
+<!--pages/music/home.wxml-->
+<text>pages/music/home.wxml</text>
+<view>
+  <navigator url="add" hover-class="navigator-hover">
+    <button class="btn" style="float:left" type="primary">新增音乐</button>
+  </navigator>
+  <navigator url="manager" hover-class="navigator-hover">
+    <button class="btn"  type="default">管理音乐</button>
+  </navigator>
+</view>

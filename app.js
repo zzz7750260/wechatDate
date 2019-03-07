@@ -36,6 +36,20 @@ App({
   globalData: {
     userInfo:{
       dev_token:"10min",
+    },
+    //设置全局tabbar的变量
+    tabBar:{
+      list:[
+        {
+          'pagePath':'../../pages/index/home',
+          'text':'首页'
+        },
+        {
+          'pagePath': '../../pages/music/home',
+          'text': '音乐'
+        }
+      ],
     }
+    
   }
 })

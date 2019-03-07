@@ -8,3 +8,16 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+/**底部导航设置**/
+.tab-bar{
+  width:100%;
+  position: fixed;
+  bottom: 0px;
+}
+
+.menu-item{
+  width:24%;
+  float:left;
+  text-align: center;
+}

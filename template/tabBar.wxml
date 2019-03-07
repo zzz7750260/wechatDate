@@ -1,0 +1,10 @@
+<template name="tabBar">    
+  <view class="tab-bar">    
+   <block wx:for="{{tabBar.list}}" wx:key="pagePath">    
+      <navigator url="{{item.pagePath}}"  class="menu-item navigator-hover">
+        <text class='tabbar_text'>{{item.text}}</text>    
+      </navigator>    
+    </block>  
+    <view class="clear"></view>    
+  </view>    
+</template>

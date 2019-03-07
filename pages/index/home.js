@@ -13,7 +13,8 @@ Page({
         date:'2018-12-02'
       }
 
-    ]
+    ],
+    theTabBar: getApp().globalData.tabBar,
   },
 
   /**
@@ -31,9 +32,12 @@ Page({
       method:'GET',
       header:{
         'content-tyoe':'application/json',
+        //'content-type': 'application/x-www-form-urlencoded'
       },
+      //dataType:'json',
       success:function(res){
         console.log(res.data);
+       // console.log(res.header);
        // console.log(res.data.result)
         theData = res.data.result;
       }

@@ -1,0 +1,13 @@
+<!--pages/music/add.wxml-->
+<text>pages/music/add.wxml</text>
+<view class="main">
+  <form bindsubmit='formSubmit'>
+    <view>
+      <input name="title" class="music_title" placeholder='输入音乐标题' />
+    </view>
+    <view>
+      <button size="mini" bindtap="addMusic">选择音乐文件</button>
+      <input type="file" name="file" />
+    </view>
+  </form>
+</view>

@@ -19,3 +19,8 @@
     </navigator>
   </view>
 </view>
+<view>
+  <!--引入导航模板-->
+  <import src="../../template/tabBar" />
+  <template is="tabBar" data="{{tabBar:theTabBar}}"/>
+</view>
